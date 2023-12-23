@@ -1,7 +1,7 @@
 {
-  "name": "oknotesalfa",
+  "name": "ok-notes_alfa",
   "version": "1.0.0",
-  "description": "",
+  "description": "test-task",
   "main": "index.js",
   "scripts": {},
   "keywords": [],
@@ -9,6 +9,10 @@
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.40.1",
-    "@types/node": "^20.10.5"
+    "@types/node": "^20.10.5",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "eslint": "^8.56.0",
+    "eslint-plugin-playwright": "^0.20.0"
   }
 }
