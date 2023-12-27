@@ -1,4 +1,6 @@
 import { Locator, Page, expect } from "@playwright/test";
+import { BasketStorage } from "../utils/storage/storage";
+import { Item } from "../utils/storage/basketItem";
 
 
 export class ProductPage {
@@ -17,7 +19,7 @@ export class ProductPage {
       this.productPriceLocator = locator.locator(`//span[contains(@class, 'product_price')]`);
       this.productNeedAmountInputLocator = locator.locator(`//input[@name='product-enter-count']`);
       this.availableAmountLocator = locator.locator(`//span[contains(@class, 'product_count')]`);
-      this.addToBasketButtonLocator = locator.locator(`//button[contains(@class, 'actionBuyProduct ')]`);
+      this.addToBasketButtonLocator = locator.locator(`//button[contains(@class, 'actionBuyProduct')]`);
       this.discountSpanLocator = locator.locator(`//s`);
     }
 
@@ -52,6 +54,14 @@ export class ProductPage {
     async addToBasket(): Promise<void> {
       const basketUpdate = this.page.waitForResponse(`https://enotes.pointschool.ru/basket/get`);
       await this.addToBasketButtonLocator.click();
+
+      const storage = BasketStorage.getStorage().getBasket();
+      const name = await this.getName();
+      const itemPrice = await this.getPrice();
+      const quantity = Number(await this.productNeedAmountInputLocator.inputValue());
+      const item: Item = new Item(name, itemPrice, quantity)
+      storage.addItem(item);
+
       await basketUpdate;
     }
 

@@ -14,7 +14,8 @@ export class BasketModalProductPage {
       this.page = page;
       this.moveFromBasketIconLocator = locator.locator(`//i[contains(@class, 'actionDeleteProduct')]`);
       this.productNameLocator = locator.locator(`span.basket-item-title`);
-      this.productTotalPriceLocator = locator.getByText(/р.$/);      
+      // this.productTotalPriceLocator = locator.getByText(/р.$/);      
+      this.productTotalPriceLocator = locator.locator(`span[class='basket-item-price']`);      
       this.productQuantityLocator = locator.locator(`span[class^='basket-item-count']`);
     }
 
