@@ -22,8 +22,17 @@ test.describe('Test basket with one product with discount', () => {
   });
 
   test.afterEach(async ({ context }) => {
+
+    await context.request.post(`http://enotes.pointschool.ru/basket/clear`, 
+      {
+        headers: {
+          'content-type': 'application/json;charset=UTF-8'          
+        },        
+      }
+    );
+
     await context.close();
-  });  
+  });
 
   test('Add 8 product items(unsame types) in basket', async ({ page }) => {    
     const productsInBasket: Array<string> = ['Творческий беспорядок'];
