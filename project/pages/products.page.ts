@@ -143,6 +143,22 @@ export class ProductsPage {
       }
     }
 
+    async addNumberOfUnsameTypeItemsNoDiscountTypeInBasket(numberOfItems: number, predefinedItems: Array<string> = []): Promise<void> {
+      const itemsLocators = await this.getItemsLocators();
+      for(const locator of itemsLocators) {
+        if(predefinedItems.length < numberOfItems) {
+          const item = new ProductPage(this.page, locator);
+          const itemName = await item.getName();
+          if(!predefinedItems.includes(itemName) && !await item.isHasDiscount()) {
+            await item.addToBasket();
+            predefinedItems.push(itemName);            
+          }
+        } else {
+          break;
+        }
+      }      
+    }
+
     async addFirstItemNoDiscountInBasket(): Promise<void> {
       const basketUpdate = this.page.waitForResponse(`https://enotes.pointschool.ru/basket/get`);
       await (await this.getOneItemNoDiscount()).addToBasket();
