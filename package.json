@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "test-task",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "lint:check": "npx eslint ."
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",

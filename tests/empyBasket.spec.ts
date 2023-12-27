@@ -6,6 +6,7 @@ import { BasketModalPage } from '../project/pages/basketModal.page';
 import { BasketPage } from '../project/pages/basket.page';
 import { ProductsPage } from '../project/pages/products.page';
 
+
 test.describe('Test empty basket', () => {
   test.beforeEach(async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -19,6 +20,15 @@ test.describe('Test empty basket', () => {
   });
 
   test.afterEach(async ({ context }) => {
+
+    await context.request.post(`http://enotes.pointschool.ru/basket/clear`, 
+      {
+        headers: {
+          'content-type': 'application/json;charset=UTF-8'          
+        },        
+      }
+    );
+
     await context.close();
   });
 
