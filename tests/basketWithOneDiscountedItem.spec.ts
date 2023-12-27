@@ -1,3 +1,4 @@
+/* eslint-disable playwright/expect-expect */
 import { test } from '@playwright/test';
 import { LoginPage } from '../project/pages/login.page';
 import { MainPage } from '../project/pages/main.page';
@@ -20,9 +21,9 @@ test.describe('Test basket with one product with discount', () => {
     await productsPage.addFirstItemWithDiscountInBasket();
   });
 
-  // test.afterEach(async ({ context }) => {
-  //   await context.close();
-  // });  
+  test.afterEach(async ({ context }) => {
+    await context.close();
+  });  
 
   test('Add 8 product items(unsame types) in basket', async ({ page }) => {    
     const productsInBasket: Array<string> = ['Творческий беспорядок'];

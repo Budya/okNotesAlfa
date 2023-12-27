@@ -22,8 +22,7 @@ export class LoginPage {
     async login(): Promise<void> {
       const basketItemsResponsePromise = this.page.waitForResponse('https://enotes.pointschool.ru/basket/get');
       await this.loginInputLocator.fill('test');
-      await this.loginInputLocator.press('Tab');
-      // @ts-ignore
+      await this.loginInputLocator.press('Tab');      
       await this.passwordInputLocator.fill(getPassword());
       await this.passwordInputLocator.press('Tab');
       await this.submitButtonLocator.click();

@@ -1,3 +1,4 @@
+/* eslint-disable playwright/expect-expect */
 import { test } from '@playwright/test';
 import { LoginPage } from '../project/pages/login.page';
 import { MainPage } from '../project/pages/main.page';
@@ -17,9 +18,9 @@ test.describe('Test empty basket', () => {
     }
   });
 
-  // test.afterEach(async ({ context }) => {
-  //   await context.close();
-  // });
+  test.afterEach(async ({ context }) => {
+    await context.close();
+  });
 
   test('Open empty basket', async ({ page }) => {    
     const mainPage = new MainPage(page);
